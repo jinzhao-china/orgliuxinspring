@@ -44,7 +44,7 @@ public class BeanFactoryTest {
 
     @Test
     public void testInvalidBean(){
-        reader.loadBeanDefinition(new FileSystemResource("petstore-v1.xml"));
+        reader.loadBeanDefinition(new ClassPathResource("petstore-v1.xml"));
 
         try{
             factory.getBean("invalidBean");
@@ -60,7 +60,7 @@ public class BeanFactoryTest {
     public void testInvalidXml(){
 
         try{
-            reader.loadBeanDefinition(new ClassPathResource("petstore-v1.xml"));
+            reader.loadBeanDefinition(new ClassPathResource("v2.xml"));
         }catch(BeansDefinitionStoreException e){
             return;
         }
