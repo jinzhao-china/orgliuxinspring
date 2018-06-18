@@ -22,7 +22,9 @@ public class ApplicationContextTest {
 
     @Test
     public void testGetBeanFromFileSystemContext(){
-        ApplicationContext ctx = new FileSystemXmlApplicationContext("/Users/zjin010/Documents/zhaojin/orgliuxinspring/src/test/resources/petstore-v1.xml");
+        String filePath = TestUtils.getPath();
+        filePath = String.format("%s/%s", filePath, "src/test/resources/petstore-v1.xml");
+        ApplicationContext ctx = new FileSystemXmlApplicationContext(filePath);
 
         PetStoreService petStore = (PetStoreService)ctx.getBean("petStore");
 
