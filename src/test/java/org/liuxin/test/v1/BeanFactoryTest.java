@@ -1,12 +1,16 @@
 package org.liuxin.test.v1;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.liuxin.beans.BeanDefinition;
 import org.liuxin.beans.factory.BeanFactory;
 import org.liuxin.beans.factory.BeansCreationException;
 import org.liuxin.beans.factory.BeansDefinitionStoreException;
 import org.liuxin.beans.factory.support.DefaultBeanFactory;
+import org.liuxin.beans.factory.xml.XmlBeanDefinitionReader;
+import org.liuxin.core.io.ClassPathResource;
+import org.liuxin.core.io.FileSystemResource;
 import org.liuxin.services.v1.PetStoreService;
 
 import static junit.framework.TestCase.*;
@@ -15,10 +19,18 @@ import static junit.framework.TestCase.*;
  * Created by zjin010 on 6/11/18.
  */
 public class BeanFactoryTest {
+    DefaultBeanFactory factory = null;
+    XmlBeanDefinitionReader reader = null;
+
+    @Before
+    public void setUp(){
+        factory = new DefaultBeanFactory();
+        reader = new XmlBeanDefinitionReader(factory);
+    }
 
     @Test
     public void testGetBean(){
-        BeanFactory factory = new DefaultBeanFactory("petstore-v1.xml");
+        reader.loadBeanDefinition(new ClassPathResource("petstore-v1.xml"));
 
         BeanDefinition bd = factory.getBeanDefinition("petStore");
 
@@ -32,7 +44,7 @@ public class BeanFactoryTest {
 
     @Test
     public void testInvalidBean(){
-        BeanFactory factory =  new DefaultBeanFactory("petstore-v1.xml");
+        reader.loadBeanDefinition(new FileSystemResource("petstore-v1.xml"));
 
         try{
             factory.getBean("invalidBean");
@@ -48,8 +60,7 @@ public class BeanFactoryTest {
     public void testInvalidXml(){
 
         try{
-            new DefaultBeanFactory("xxx.xml");
-
+            reader.loadBeanDefinition(new ClassPathResource("petstore-v1.xml"));
         }catch(BeansDefinitionStoreException e){
             return;
         }
