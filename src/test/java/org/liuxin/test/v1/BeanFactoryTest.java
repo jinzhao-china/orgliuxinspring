@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.liuxin.beans.BeanDefinition;
-import org.liuxin.beans.factory.BeansCreationException;
+import org.liuxin.beans.factory.BeanCreationException;
 import org.liuxin.beans.factory.BeansDefinitionStoreException;
 import org.liuxin.beans.factory.support.DefaultBeanFactory;
 import org.liuxin.beans.factory.xml.XmlBeanDefinitionReader;
@@ -48,7 +48,7 @@ public class BeanFactoryTest {
         try {
             factory.getBean("invalidBean");
 
-        } catch (BeansCreationException e) {
+        } catch (BeanCreationException e) {
             return;
         }
 

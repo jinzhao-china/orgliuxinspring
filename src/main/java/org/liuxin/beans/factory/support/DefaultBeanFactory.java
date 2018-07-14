@@ -1,7 +1,7 @@
 package org.liuxin.beans.factory.support;
 
 import org.liuxin.beans.BeanDefinition;
-import org.liuxin.beans.factory.BeansCreationException;
+import org.liuxin.beans.factory.BeanCreationException;
 import org.liuxin.beans.factory.config.ConfigurableBeanFactory;
 import org.liuxin.util.ClassUtils;
 
@@ -21,20 +21,31 @@ public class DefaultBeanFactory extends DefaultSingletonBeanRegistry implements 
 
     }
 
-    public Object getBean(String beanId) {
-        BeanDefinition bd = this.getBeanDefinition(beanId);
-
-        if (bd == null) {
-            throw new BeansCreationException("Bean Definition does not exist");
+    public Object getBean(String beanID) {
+        BeanDefinition bd = this.getBeanDefinition(beanID);
+        if(bd == null){
+            return null;
         }
 
-        ClassLoader cl = ClassUtils.getDefaultClassLoader();
+        if(bd.isSingleton()){
+            Object bean = this.getSingleton(beanID);
+            if(bean == null){
+                bean = createBean(bd);
+                this.registerSingleton(beanID, bean);
+            }
+            return bean;
+        }
+        return createBean(bd);
+    }
+
+    private Object createBean(BeanDefinition bd) {
+        ClassLoader cl = this.getBeanClassLoader();
         String beanClassName = bd.getBeanClassName();
         try {
             Class<?> clz = cl.loadClass(beanClassName);
             return clz.newInstance();
         } catch (Exception e) {
-           throw new BeansCreationException("Bean Definition does not exist");
+            throw new BeanCreationException("create bean for "+ beanClassName +" failed",e);
         }
     }
 

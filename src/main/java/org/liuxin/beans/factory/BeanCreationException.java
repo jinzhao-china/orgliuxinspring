@@ -5,23 +5,23 @@ import org.liuxin.beans.BeansException;
 /**
  * Created by zjin010 on 6/11/18.
  */
-public class BeansCreationException extends BeansException {
+public class BeanCreationException extends BeansException {
     private String beanName;
 
-    public BeansCreationException(String msg){
+    public BeanCreationException(String msg){
         super(msg);
     }
 
-    public BeansCreationException(String msg, Throwable cause){
+    public BeanCreationException(String msg, Throwable cause){
         super(msg, cause);
     }
 
-    public BeansCreationException(String beanName, String msg){
+    public BeanCreationException(String beanName, String msg){
         super("Error creating bean with name '" + beanName+"': " + msg);
         this.beanName = beanName;
     }
 
-    public BeansCreationException(String beanName, String msg, Throwable cause){
+    public BeanCreationException(String beanName, String msg, Throwable cause){
         this(beanName, msg);
         initCause(cause);
     }
