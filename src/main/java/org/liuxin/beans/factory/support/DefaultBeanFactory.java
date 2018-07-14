@@ -15,6 +15,8 @@ public class DefaultBeanFactory extends DefaultSingletonBeanRegistry implements 
 
     public final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<String, BeanDefinition>();
 
+    private ClassLoader beanClassLoader;
+
     public DefaultBeanFactory(){
 
     }
@@ -45,10 +47,10 @@ public class DefaultBeanFactory extends DefaultSingletonBeanRegistry implements 
     }
 
     public void setBeanClassLoader(ClassLoader beanClassLoader) {
-
+        this.beanClassLoader = beanClassLoader;
     }
 
     public ClassLoader getBeanClassLoader() {
-        return null;
+        return (this.beanClassLoader != null ? this.beanClassLoader : ClassUtils.getDefaultClassLoader());
     }
 }
