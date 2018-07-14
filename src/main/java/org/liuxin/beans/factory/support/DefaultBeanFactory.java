@@ -19,40 +19,6 @@ public class DefaultBeanFactory extends DefaultSingletonBeanRegistry implements 
 
     }
 
-//    private void loadBeanDefinition(String configFile) {
-//        InputStream is = null;
-//        try {
-//            ClassLoader cl = ClassUtils.getDefaultClassLoader();
-//            is = cl.getResourceAsStream(configFile);
-//
-//            SAXReader reader = new SAXReader();
-//
-//            Document doc = reader.read(is);
-//
-//            Element root = doc.getRootElement();
-//            Iterator<Element> iter = root.elementIterator();
-//
-//            while (iter.hasNext()) {
-//                Element ele = iter.next();
-//                String id = ele.attributeValue(ID_ATTRIBUTE);
-//                String beanClassName = ele.attributeValue(CLASS_ATTRIBUTE);
-//                BeanDefinition bd = new GenericBeanDefinition(id, beanClassName);
-//                this.beanDefinitionMap.put(id, bd);
-//            }
-//
-//        } catch (DocumentException ex) {
-//            throw new BeansDefinitionStoreException("IOException parsing XML document", ex.getCause());
-//        }finally {
-//            if(is != null){
-//                try{
-//                    is.close();
-//                }catch(IOException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-
     public Object getBean(String beanId) {
         BeanDefinition bd = this.getBeanDefinition(beanId);
 
