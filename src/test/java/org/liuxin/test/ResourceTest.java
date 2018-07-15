@@ -1,4 +1,4 @@
-package org.liuxin.test.v1;
+package org.liuxin.test;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import java.io.InputStream;
 public class ResourceTest {
     @Test
     public void testClassPathResource() throws Exception {
-        Resource r = new ClassPathResource("petstore-v1.xml");
+        Resource r = new ClassPathResource("petstore.xml");
         InputStream is = null;
         try {
             is = r.getInputStream();
@@ -30,7 +30,7 @@ public class ResourceTest {
     @Test
     public void testFileSystemPathResource() throws Exception {
         String filePath = TestUtils.getPath();
-        filePath = String.format("%s/%s", filePath, "src/test/resources/petstore-v1.xml");
+        filePath = String.format("%s/%s", filePath, "src/test/resources/petstore.xml");
         System.out.println(filePath);
         Resource r = new FileSystemResource(filePath);
 

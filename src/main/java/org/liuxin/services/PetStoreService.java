@@ -1,4 +1,4 @@
-package org.liuxin.services.v1;
+package org.liuxin.services;
 
 /**
  * Created by zjin010 on 6/11/18.

@@ -5,9 +5,23 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="petStore"
-          class="org.litespring.service.v1.PetStoreService" >
+          class="org.liuxin.services.PetStoreService" >
+
+        <property name="accountDao" ref="accountDao"/>
+        <property name="itemDao" ref="itemDao"/>
+        <property name="owner" value="liuxin"/>
+        <property name="version"  value="2"/>
+
     </bean>
+
+    <bean id="accountDao"  class="org.liuxin.dao.AccountDao">
+    </bean>
+
+    <bean id="itemDao" class="org.liuxin.dao.ItemDao">
+    </bean>
+
     <bean id="invalidBean"
           class="xxx.xxxxx" >
     </bean>
+
 </beans>

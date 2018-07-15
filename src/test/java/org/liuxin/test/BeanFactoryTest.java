@@ -1,4 +1,4 @@
-package org.liuxin.test.v1;
+package org.liuxin.test;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,7 +9,7 @@ import org.liuxin.beans.factory.BeansDefinitionStoreException;
 import org.liuxin.beans.factory.support.DefaultBeanFactory;
 import org.liuxin.beans.factory.xml.XmlBeanDefinitionReader;
 import org.liuxin.core.io.ClassPathResource;
-import org.liuxin.services.v1.PetStoreService;
+import org.liuxin.services.PetStoreService;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -29,12 +29,12 @@ public class BeanFactoryTest {
 
     @Test
     public void testGetBean() {
-        reader.loadBeanDefinition(new ClassPathResource("petstore-v1.xml"));
+        reader.loadBeanDefinition(new ClassPathResource("petstore.xml"));
 
         BeanDefinition bd = factory.getBeanDefinition("petStore");
 
 
-        assertEquals("org.liuxin.services.v1.PetStoreService", bd.getBeanClassName());
+        assertEquals("org.liuxin.services.PetStoreService", bd.getBeanClassName());
 
         PetStoreService petStore = (PetStoreService) factory.getBean("petStore");
 
@@ -43,7 +43,7 @@ public class BeanFactoryTest {
 
     @Test
     public void testInvalidBean() {
-        reader.loadBeanDefinition(new ClassPathResource("petstore-v1.xml"));
+        reader.loadBeanDefinition(new ClassPathResource("petstore.xml"));
 
         try {
             factory.getBean("invalidBean");

@@ -1,4 +1,4 @@
-package org.liuxin.test.v1;
+package org.liuxin.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

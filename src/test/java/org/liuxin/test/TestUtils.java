@@ -1,4 +1,4 @@
-package org.liuxin.test.v1;
+package org.liuxin.test;
 
 import java.io.File;
 
