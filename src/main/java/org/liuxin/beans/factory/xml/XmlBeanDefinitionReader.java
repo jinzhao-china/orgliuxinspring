@@ -89,13 +89,11 @@ public class XmlBeanDefinitionReader {
                 return;
             }
 
-
             Object val = parsePropertyValue(propElem, bd, propertyName);
             PropertyValue pv = new PropertyValue(propertyName, val);
 
             bd.getPropertyValues().add(pv);
         }
-
     }
 
     public Object parsePropertyValue(Element ele, BeanDefinition bd, String propertyName) {
