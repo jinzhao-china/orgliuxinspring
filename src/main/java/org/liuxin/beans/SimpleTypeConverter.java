@@ -1,10 +1,12 @@
 package org.liuxin.beans;
 
+import org.liuxin.beans.propertyeditors.CustomBooleanEditor;
+import org.liuxin.beans.propertyeditors.CustomNumberEditor;
+import org.liuxin.util.ClassUtils;
+
 import java.beans.PropertyEditor;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.liuxin.util.ClassUtils;
 
 /**
  * Created by zjin010 on 7/15/18.

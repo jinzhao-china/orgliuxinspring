@@ -1,6 +1,9 @@
 package org.liuxin.beans.factory.support;
 
 import org.liuxin.beans.BeanDefinition;
+import org.liuxin.beans.PropertyValue;
+
+import java.util.*;
 
 /**
  * Created by zjin010 on 6/11/18.
@@ -8,35 +11,39 @@ import org.liuxin.beans.BeanDefinition;
 public class GenericBeanDefinition implements BeanDefinition {
     private String id;
     private String beanClassName;
-
     private boolean singleton = true;
     private boolean prototype = false;
     private String scope = SCOPE_DEFAULT;
 
+    List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
+
     public GenericBeanDefinition(String id, String beanClassName) {
+
         this.id = id;
         this.beanClassName = beanClassName;
     }
-
     public String getBeanClassName() {
+
         return this.beanClassName;
     }
 
-    public String getScope(){
+    public boolean isSingleton() {
+        return this.singleton;
+    }
+    public boolean isPrototype() {
+        return this.prototype;
+    }
+    public String getScope() {
         return this.scope;
     }
-
-    public void setScope(String scope){
+    public void setScope(String scope) {
         this.scope = scope;
         this.singleton = SCOPE_SINGLETON.equals(scope) || SCOPE_DEFAULT.equals(scope);
         this.prototype = SCOPE_PROTOTYPE.equals(scope);
-    }
 
-    public boolean isSingleton(){
-        return this.singleton;
     }
-
-    public boolean isPrototype(){
-        return this.prototype;
+    public List<PropertyValue> getPropertyValues(){
+        return this.propertyValues;
     }
 }
+
