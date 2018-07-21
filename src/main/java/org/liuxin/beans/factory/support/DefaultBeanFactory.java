@@ -78,8 +78,10 @@ public class DefaultBeanFactory extends DefaultSingletonBeanRegistry implements 
         BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this);
         SimpleTypeConverter converter = new SimpleTypeConverter();
         try{
-
+            // The Introspector class provides a standard way for tools to learn about the properties,
+            // events, and methods supported by a target Java Bean.
             BeanInfo beanInfo = Introspector.getBeanInfo(bean.getClass());
+            // Returns descriptors for all properties of the bean.
             PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
 
             for (PropertyValue pv : pvs){
