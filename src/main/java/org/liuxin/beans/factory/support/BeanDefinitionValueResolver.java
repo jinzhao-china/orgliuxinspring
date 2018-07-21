@@ -3,14 +3,16 @@ package org.liuxin.beans.factory.support;
 /**
  * Created by zjin010 on 7/20/18.
  */
+
+import org.liuxin.beans.factory.BeanFactory;
 import org.liuxin.beans.factory.config.RuntimeBeanReference;
 import org.liuxin.beans.factory.config.TypedStringValue;
 
 public class BeanDefinitionValueResolver {
-    private final DefaultBeanFactory beanFactory;
+    private final BeanFactory beanFactory;
 
     public BeanDefinitionValueResolver(
-            DefaultBeanFactory beanFactory) {
+            BeanFactory beanFactory) {
 
         this.beanFactory = beanFactory;
     }

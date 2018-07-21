@@ -1,9 +1,11 @@
 package org.liuxin.beans.factory.support;
 
 import org.liuxin.beans.BeanDefinition;
+import org.liuxin.beans.ConstructorArgument;
 import org.liuxin.beans.PropertyValue;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zjin010 on 6/11/18.
@@ -16,6 +18,7 @@ public class GenericBeanDefinition implements BeanDefinition {
     private String scope = SCOPE_DEFAULT;
 
     List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
+    private ConstructorArgument constructorArgument = new ConstructorArgument();
 
     public GenericBeanDefinition(String id, String beanClassName) {
 
@@ -42,8 +45,18 @@ public class GenericBeanDefinition implements BeanDefinition {
         this.prototype = SCOPE_PROTOTYPE.equals(scope);
 
     }
+
     public List<PropertyValue> getPropertyValues(){
         return this.propertyValues;
+    }
+    public ConstructorArgument getConstructorArgument() {
+        return this.constructorArgument;
+    }
+    public String getID() {
+        return this.id;
+    }
+    public boolean hasConstructorArgumentValues() {
+        return !this.constructorArgument.isEmpty();
     }
 }
 

@@ -6,18 +6,21 @@
 
     <bean id="petStore"
           class="org.liuxin.services.PetStoreService" >
+        <constructor-arg  ref="accountDao"/>
+        <constructor-arg  ref="itemDao"/>
+        <constructor-arg  value="1"/>
 
         <property name="accountDao" ref="accountDao"/>
         <property name="itemDao" ref="itemDao"/>
         <property name="owner" value="liuxin"/>
         <property name="version"  value="2"/>
-
-    </bean>
-
-    <bean id="accountDao"  class="org.liuxin.dao.AccountDao">
     </bean>
 
     <bean id="itemDao" class="org.liuxin.dao.ItemDao">
+
+    </bean>
+    <bean id="accountDao"  class="org.liuxin.dao.AccountDao">
+
     </bean>
 
     <bean id="invalidBean"
